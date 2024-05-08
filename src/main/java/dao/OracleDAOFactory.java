@@ -1,20 +1,15 @@
 package dao;
 
-import interfaces.CursoDAO;
-import interfaces.UsuarioDAO;
-import modelo.MySqlCursoDAO;
-import modelo.MySqlUsuarioDAO;
+import interfaces.CitaDAO;
+import modelo.MySqlCitaDAO;
+
 
 public class OracleDAOFactory extends DAOFactory {
 
 	@Override
-	public CursoDAO getCurso() {
-		return new MySqlCursoDAO();
+	public CitaDAO getCita() {
+		return new MySqlCitaDAO();
 	}
 	
-	@Override
-	public UsuarioDAO getUsuario() {
-		return new MySqlUsuarioDAO();
-	}
-	
+
 }
