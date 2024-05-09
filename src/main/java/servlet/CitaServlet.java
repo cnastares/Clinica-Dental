@@ -1,11 +1,17 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import dao.DAOFactory;
+import entidades.Cita;
+import interfaces.CitaDAO;
 
 /**
  * Servlet implementation class CitaServlet
@@ -27,6 +33,25 @@ public class CitaServlet extends HttpServlet {
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String tipo = request.getParameter("tipo");
+		
+		switch(tipo) {
+		case "listar" : listCita(request, response); break;
+		default:
+			request.setAttribute("mensaje", "Ocurrio un problema");
+			request.getRequestDispatcher("home.jsp").forward(request, response);
+		}
+	}
+	
+	protected void listCita(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		DAOFactory daoFactory = DAOFactory.getDaoFactory(DAOFactory.MYSQL);
+		
+		CitaDAO dao = daoFactory.getCita();
+		
+		List<Cita> lista = dao.listarCitas();
+		
+		request.setAttribute("lista", lista);
+		request.getRequestDispatcher("home.jsp").forward(request, response);
 	}
 
 }
