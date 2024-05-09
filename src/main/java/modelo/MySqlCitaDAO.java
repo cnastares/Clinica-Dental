@@ -21,15 +21,15 @@ public class MySqlCitaDAO implements CitaDAO {
 		
 		try {
 			cn = MysqlConexion.getConexion();
-			String sql = "Select * from citas";
+			String sql = "call ObtenerDatosCitas();";
 			psm = cn.prepareStatement(sql);
 			rs = psm.executeQuery();
 			
 			while(rs.next()) {
 				Cita cita = new Cita();
 				cita.setId_cita(rs.getInt("id_cita"));
-				cita.setId_paciente(rs.getInt("id_paciente"));
-				cita.setId_personal(rs.getInt("id_personal"));
+				cita.setNombre_paciente(rs.getString("nombre_paciente"));
+				cita.setNombre_personal(rs.getString("nombre_personal"));
 				cita.setEstado(rs.getString("estado"));
 				cita.setTipo_atencion(rs.getString("tipo_atencion"));
 				cita.setFecha(rs.getDate("fecha"));
