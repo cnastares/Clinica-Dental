@@ -4,27 +4,22 @@ import java.sql.Date;
 import java.sql.Time;
 
 public class Cita {
-	public int id_cita;
-	public String id_paciente, id_personal, estado, tipo_atencion;
-	public Date fecha;
-	public Time hora;
-	
 	public int getId_cita() {
 		return id_cita;
 	}
 	public void setId_cita(int id_cita) {
 		this.id_cita = id_cita;
 	}
-	public String getId_paciente() {
+	public int getId_paciente() {
 		return id_paciente;
 	}
-	public void setId_paciente(String id_paciente) {
+	public void setId_paciente(int id_paciente) {
 		this.id_paciente = id_paciente;
 	}
-	public String getId_personal() {
+	public int getId_personal() {
 		return id_personal;
 	}
-	public void setId_personal(String id_personal) {
+	public void setId_personal(int id_personal) {
 		this.id_personal = id_personal;
 	}
 	public String getEstado() {
@@ -51,5 +46,12 @@ public class Cita {
 	public void setHora(Time hora) {
 		this.hora = hora;
 	}
-
+	public int id_cita;
+	public int id_paciente;
+	public int id_personal;
+	public String estado, tipo_atencion;
+	public Date fecha;
+	public Time hora;
+	
+	
 }

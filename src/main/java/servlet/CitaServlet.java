@@ -36,7 +36,7 @@ public class CitaServlet extends HttpServlet {
 		String tipo = request.getParameter("tipo");
 		
 		switch(tipo) {
-		case "listar" : listCita(request, response); break;
+		case "list" : listCita(request, response); break;
 		default:
 			request.setAttribute("mensaje", "Ocurrio un problema");
 			request.getRequestDispatcher("home.jsp").forward(request, response);

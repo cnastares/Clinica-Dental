@@ -71,7 +71,7 @@
 
                 <ul class="navbar-nav theme-brand flex-row  text-center">
                     <li class="nav-item theme-text">
-                        <a href="home.html" class="nav-link">Clinica Odontologica</a>
+                        <a href="CitaServlet?tipo=list" class="nav-link">Clinica Odontologica</a>
                     </li>
                     <li class="nav-item toggle-sidebar">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather sidebarCollapse feather-chevrons-left"><polyline points="11 17 6 12 11 7"></polyline><polyline points="18 17 13 12 18 7"></polyline></svg>
@@ -83,7 +83,7 @@
                     
 
                     <li class="menu active">
-                        <a href="home.html" aria-expanded="true" class="dropdown-toggle">
+                        <a href="CitaServlet?tipo=list" aria-expanded="true" class="dropdown-toggle">
                             <div class="">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>                                
                                 <span>Dashboard</span>
@@ -147,21 +147,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                     <% 
-										String error = (String)request.getAttribute("mensaje");
+				 					<% 
+				 						List<Cita> listCita = (List<Cita>)request.getAttribute("lista");
+										if(listCita != null){
+											for(Cita item: listCita){
 									%>
-                                	<% 
-										List<Cita> listCita = (List<Cita>)request.getAttribute("lista");
-					
-											if(listCita != null){
-												for(Cita item: listCita){
-									%>
-                                    <tr> 
+										<tr> 
                                         
-                                        <td><a href="apps_invoice-preview.html"><span class="inv-number">#098424</span></a></td>
+                                        <td><a href="apps_invoice-preview.html"><span class="inv-number"><%=item.getId_cita() %></span></a></td>
                                         <td>
                                             <div class="d-flex">
-                                                <p class="align-self-center mb-0 user-name"><%=item.id_paciente %></p>
+                                                <p class="align-self-center mb-0 user-name"><%=item.getId_paciente() %></p>
                                             </div>
                                         </td>
                                         <td><span class="align-self-center mb-0 user-name"><%=item.getId_personal() %></span></td>
@@ -174,12 +170,12 @@
                                                 <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                                         </td>
                                     </tr>
-					<%
+								<%
+								}
 							}
-						}
-					%>
+						%>
                                 </tbody>
-                            </table>
+                            </table>				
                         </div>
                     </div>
 

@@ -27,11 +27,11 @@ public class MySqlCitaDAO implements CitaDAO {
 			
 			while(rs.next()) {
 				Cita cita = new Cita();
-				cita.setId_cita(rs.getInt("idCita"));
-				cita.setId_paciente(rs.getString("idPaciente"));
-				cita.setId_personal(rs.getString("idPersona"));
+				cita.setId_cita(rs.getInt("id_cita"));
+				cita.setId_paciente(rs.getInt("id_paciente"));
+				cita.setId_personal(rs.getInt("id_personal"));
 				cita.setEstado(rs.getString("estado"));
-				cita.setTipo_atencion(rs.getString("tipoAtencion"));
+				cita.setTipo_atencion(rs.getString("tipo_atencion"));
 				cita.setFecha(rs.getDate("fecha"));
 				cita.setHora(rs.getTime("hora"));
 				listaCitas.add(cita);
