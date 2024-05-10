@@ -45,10 +45,12 @@
             </ul>
             <ul class="navbar-item flex-row search-ul">
                 <li class="nav-item align-self-center search-animated">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search toggle-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                    <form class="form-inline search-full form-inline search" role="search">
+                    <form class="form-inline search-full form-inline search" role="search" action="CitaServlet?tipo=filter" method = "POST">
+                        <button type = "submit"> 
+                        	<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search toggle-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                        </button>
                         <div class="search-bar">
-                            <input type="text" class="form-control search-form-control  ml-lg-auto" placeholder="Search...">
+                            <input type="text" name="filterWord" class="form-control search-form-control  ml-lg-auto" placeholder="Buscar ...">
                         </div>
                     </form>
                 </li>
@@ -169,9 +171,6 @@
                                                 <a href="CitaServlet?tipo=edit>" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
                                                 <a href="CitaServlet?tipo=delete&id=<%=item.getId_cita()%>">
                                                 	<i class="material-icons">&#xE872;</i>
-                                                </a>
-                                                <a href="CitaServlet?tipo=delete&id=<%=item.getId_cita()%>">
-                                                    <img alt="" src="img/ic_delete.svg" width="15" height="15" title="Eliminar">
                                                 </a>
                                         </td>
                                     </tr>

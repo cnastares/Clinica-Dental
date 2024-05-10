@@ -38,6 +38,7 @@ public class CitaServlet extends HttpServlet {
 		switch(tipo) {
 		case "list" : listCita(request, response); break;
 		case "delete" : eliminarCita(request, response); break;
+		case "filter" : filtrarCita(request, response); break;
 		default:
 			request.setAttribute("mensaje", "Ocurrio un problema");
 			request.getRequestDispatcher("home.jsp").forward(request, response);
@@ -72,5 +73,18 @@ public class CitaServlet extends HttpServlet {
 		}
 			
 	}
+	
+	protected void filtrarCita(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String filter = request.getParameter("filterWord");
+		DAOFactory daoFactory = DAOFactory.getDaoFactory(DAOFactory.MYSQL);
+	
+		CitaDAO dao = daoFactory.getCita();
+		
+		List<Cita> lista = dao.filtrarCita(filter);
+		
+		request.setAttribute("lista", lista);
+		request.getRequestDispatcher("home.jsp").forward(request, response);
+	}
+
 
 }

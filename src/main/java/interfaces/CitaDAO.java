@@ -15,4 +15,7 @@ public interface CitaDAO {
 	//public int editarCita(Cita cita);
 	
 	public int eliminarCita(int id);
+	
+	public List<Cita> filtrarCita(String nombre);
+
 }
