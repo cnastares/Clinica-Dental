@@ -34,24 +34,43 @@ public class CitaServlet extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String tipo = request.getParameter("tipo");
-		
+		System.out.println(tipo);
 		switch(tipo) {
 		case "list" : listCita(request, response); break;
+		case "delete" : eliminarCita(request, response); break;
 		default:
 			request.setAttribute("mensaje", "Ocurrio un problema");
 			request.getRequestDispatcher("home.jsp").forward(request, response);
+			
 		}
 	}
 	
 	protected void listCita(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DAOFactory daoFactory = DAOFactory.getDaoFactory(DAOFactory.MYSQL);
-		
+	;
 		CitaDAO dao = daoFactory.getCita();
 		
 		List<Cita> lista = dao.listarCitas();
 		
 		request.setAttribute("lista", lista);
 		request.getRequestDispatcher("home.jsp").forward(request, response);
+	}
+
+	protected void eliminarCita(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int id = Integer.parseInt(request.getParameter("id"));
+		System.out.println("linea 61");
+		DAOFactory daoFactory = DAOFactory.getDaoFactory(DAOFactory.MYSQL);
+		CitaDAO dao = daoFactory.getCita();
+		
+		int value = dao.eliminarCita(id);
+		
+		if(value == 1) {
+			listCita(request, response);
+		} else {
+			request.setAttribute("mensaje", "Ocurrio un problema");
+			request.getRequestDispatcher("home.jsp").forward(request, response);
+		}
+			
 	}
 
 }

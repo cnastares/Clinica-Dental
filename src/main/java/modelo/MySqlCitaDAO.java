@@ -50,4 +50,31 @@ public class MySqlCitaDAO implements CitaDAO {
 		}		
 		return listaCitas;
 	}
+
+	@Override
+	public int eliminarCita(int id) {
+		int value = 0;
+		Connection cn = null;
+		PreparedStatement psm = null;
+		
+		try {
+			cn = MysqlConexion.getConexion();
+			String sql = "Delete from citas where id_cita=?";
+			psm = cn.prepareStatement(sql);
+			psm.setInt(1, id);
+			
+			value = psm.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (psm != null) psm.close();
+				if (cn != null) cn.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return value;
+	}
 }
