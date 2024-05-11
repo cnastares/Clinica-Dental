@@ -6,7 +6,7 @@ import entidades.Cita;
 
 public interface CitaDAO {
 	
-	//public int registrarCita(Cita cita);
+	public int registrarCita(Cita cita);
 	
 	public List<Cita> listarCitas();
 	

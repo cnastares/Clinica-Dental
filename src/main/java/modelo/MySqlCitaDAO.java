@@ -115,4 +115,37 @@ public class MySqlCitaDAO implements CitaDAO {
 		
 		return filtraCitas;
 	}
+	
+	@Override
+	public int registrarCita(Cita cita) {
+		int value = 0;
+		Connection cn = null;
+		PreparedStatement psm = null;
+		
+		try {
+			cn = MysqlConexion.getConexion();
+			String sql = "Insert into cita values (null, ?, ?, ?, ?,?,?)";
+			psm = cn.prepareStatement(sql);
+			psm.setInt(1, cita.getId_paciente());
+			psm.setInt(2, cita.getId_personal());
+			psm.setDate(3, cita.getFecha());
+			psm.setTime(4, cita.getHora());
+			psm.setString(4, cita.getEstado());
+			psm.setString(4, cita.getTipo_atencion());
+			
+			value = psm.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (psm != null) psm.close();
+				if (cn != null) cn.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}	
+		System.out.println(value);
+		return value;
+	}
+	
 }

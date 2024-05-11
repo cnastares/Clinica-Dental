@@ -1,6 +1,10 @@
 package servlet;
 
 import java.io.IOException;
+import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -86,5 +90,40 @@ public class CitaServlet extends HttpServlet {
 		request.getRequestDispatcher("home.jsp").forward(request, response);
 	}
 
+		
+	protected void registCita(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
+		
+		String nombrePaciente = request.getParameter("txtNombrePaciente");
+		String nombrePersonal = request.getParameter("txtNombrePersonal");	
+		Date fecha =  dateFormat.parse(request.getParameter("txtFecha"));
+		Date hora = timeFormat.parse(request.getParameter("txtHora"));
+		Time tiempo = new Time(hora.getTime());
+		String estado = request.getParameter("txtEstado");
+		String tipoAtencion = request.getParameter("txtTipoAtencion");
+		
+		Cita cita = new Cita();
+		cita.setNombre_paciente(nombrePaciente);
+		cita.setNombre_personal(nombrePersonal);
+		cita.setFecha(fecha);
+		cita.setHora(tiempo);
+		cita.setEstado(estado);
+		cita.setTipo_atencion(tipoAtencion);
+		
+		DAOFactory daoFactory = DAOFactory.getDaoFactory(DAOFactory.MYSQL);
+		
+		CitaDAO dao = daoFactory.getCita();
+		
+		int value = dao.registrarCita(cita);
+		
+		if(value == 1){
+			listCita(request, response);
+		} else {
+			request.setAttribute("mensaje", "Ocurrio un problema");
+			request.getRequestDispatcher("regCitas.jsp").forward(request, response);
+		}
+		
+	}
 
 }
