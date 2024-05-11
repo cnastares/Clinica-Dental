@@ -4,7 +4,8 @@ import java.io.IOException;
 import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.Calendar;
+import java.sql.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -41,6 +42,18 @@ public class CitaServlet extends HttpServlet {
 		System.out.println(tipo);
 		switch(tipo) {
 		case "list" : listCita(request, response); break;
+		case "regist" : try {
+				registCita(request, response);
+			} catch (ServletException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} break;
 		case "delete" : eliminarCita(request, response); break;
 		case "filter" : filtrarCita(request, response); break;
 		default:
@@ -94,20 +107,25 @@ public class CitaServlet extends HttpServlet {
 	protected void registCita(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
-		
-		String nombrePaciente = request.getParameter("txtNombrePaciente");
-		String nombrePersonal = request.getParameter("txtNombrePersonal");	
-		Date fecha =  dateFormat.parse(request.getParameter("txtFecha"));
-		Date hora = timeFormat.parse(request.getParameter("txtHora"));
-		Time tiempo = new Time(hora.getTime());
+	    // Analizar la cadena de tiempo
+	    java.util.Date parsedTimeUtil = timeFormat.parse(request.getParameter("txtHora"));
+	    java.util.Date parsedDateUtil = dateFormat.parse(request.getParameter("txtFecha"));
+	    // Convertir el objeto Date a un objeto Time
+	    java.sql.Time parsedTime = new java.sql.Time(parsedTimeUtil.getTime());
+	    java.sql.Date parsedDateSql = new java.sql.Date(parsedDateUtil.getTime());
+
+		int nombrePaciente = 4;	
+		int nombrePersonal = 1;	
+		Date fecha =  parsedDateSql;
+		Time hora = parsedTime;
 		String estado = request.getParameter("txtEstado");
 		String tipoAtencion = request.getParameter("txtTipoAtencion");
 		
 		Cita cita = new Cita();
-		cita.setNombre_paciente(nombrePaciente);
-		cita.setNombre_personal(nombrePersonal);
+		cita.setId_paciente(nombrePaciente);
+		cita.setId_personal(nombrePersonal);
 		cita.setFecha(fecha);
-		cita.setHora(tiempo);
+		cita.setHora(hora);
 		cita.setEstado(estado);
 		cita.setTipo_atencion(tipoAtencion);
 		

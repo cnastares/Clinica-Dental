@@ -124,14 +124,14 @@ public class MySqlCitaDAO implements CitaDAO {
 		
 		try {
 			cn = MysqlConexion.getConexion();
-			String sql = "Insert into cita values (null, ?, ?, ?, ?,?,?)";
+			String sql = "Insert into citas values (null, ?, ?, ?, ?,?,?)";
 			psm = cn.prepareStatement(sql);
-			psm.setInt(1, cita.getId_paciente());
-			psm.setInt(2, cita.getId_personal());
-			psm.setDate(3, cita.getFecha());
-			psm.setTime(4, cita.getHora());
-			psm.setString(4, cita.getEstado());
-			psm.setString(4, cita.getTipo_atencion());
+	        psm.setInt(1, cita.getId_paciente());
+	        psm.setInt(2, cita.getId_personal());
+	        psm.setDate(3, cita.getFecha());
+	        psm.setTime(4, cita.getHora());
+	        psm.setString(5, cita.getEstado());
+	        psm.setString(6, cita.getTipo_atencion());
 			
 			value = psm.executeUpdate();
 		} catch (Exception e) {
