@@ -113,9 +113,9 @@ public class CitaServlet extends HttpServlet {
 	    // Convertir el objeto Date a un objeto Time
 	    java.sql.Time parsedTime = new java.sql.Time(parsedTimeUtil.getTime());
 	    java.sql.Date parsedDateSql = new java.sql.Date(parsedDateUtil.getTime());
-
-		int nombrePaciente = 4;	
-		int nombrePersonal = 1;	
+	    System.out.println(Integer.parseInt(request.getParameter("txtPaciente")));
+		int nombrePaciente = Integer.parseInt(request.getParameter("txtPaciente"));	
+		int nombrePersonal = Integer.parseInt(request.getParameter("txtPersonalMedico"));;	
 		Date fecha =  parsedDateSql;
 		Time hora = parsedTime;
 		String estado = request.getParameter("txtEstado");
@@ -142,6 +142,17 @@ public class CitaServlet extends HttpServlet {
 			request.getRequestDispatcher("regCitas.jsp").forward(request, response);
 		}
 		
+	}
+	
+	protected void listPacientes(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		DAOFactory daoFactory = DAOFactory.getDaoFactory(DAOFactory.MYSQL);
+	;
+		CitaDAO dao = daoFactory.getCita();
+		
+		List<Cita> lista = dao.listarCitas();
+		
+		request.setAttribute("lista", lista);
+		request.getRequestDispatcher("home.jsp").forward(request, response);
 	}
 
 }

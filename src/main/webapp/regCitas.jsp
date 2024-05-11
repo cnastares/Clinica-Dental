@@ -100,7 +100,7 @@
                         <a target="_blank" href="../../documentation/index.html" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>                                
-                                <span>Cerrar  Sesión</span>
+                                <span>Cerrar  Sesiï¿½n</span>
                             </div>
                         </a>
                     </li>
@@ -122,21 +122,11 @@
 				<div class="doc-container">
 
 					<div class="row">
-						<div class="col-xl-9">
+						<div class="col-xl-12">
 
 							<div class="invoice-content">
 
 								<div class="invoice-detail-body">
-
-									<div class="invoice-detail-title" bis_skin_checked="1">
-										
-										<div class="form-group mb-4">
-											<label for="number">NUMERO DE LA CITA</label>
-											<input type="text" class="form-control form-control-sm" id="number" placeholder="#0001">
-										</div>
-
-									</div>
-
 									<div class="invoice-detail-header">
 									<form action="CitaServlet?tipo=regist" method="post">
 										<div class="row justify-content-between">
@@ -149,37 +139,39 @@
 													<div class="form-group row">
 														<label for="company-name" class="col-sm-3 col-form-label col-form-label-sm">Nombre Paciente</label>
 														<div class="col-sm-9">
-															<input type="text" class="form-control form-control-sm" id="company-name" placeholder="Nombre Paciente" name="txtNombrePaciente">
+															<select name="txtPaciente" class="form-control country_code  form-control-sm" id="payment-method-country">
+																<option value="">Seleccionar paciente</option>
+																<option value=1>Nombre 1</option>
+																<option value=2>Nombre 2</option>
+																<option value=3>Nombre 3</option>
+																<option value=4>Nombre 4</option>
+																<option value=5>Nombre 5</option>
+															</select>
 														</div>
 													</div>
 
 													<div class="form-group row">
 														<label for="company-email" class="col-sm-3 col-form-label col-form-label-sm">Nombre Doctor</label>
 														<div class="col-sm-9">
-															<select name="country_code" class="form-control country_code  form-control-sm" id="payment-method-country">
-																<option value="">SELECCIONAR AL MEDICO</option>
-																<option value="PIERO NASTARES">PIERO NASTARES</option>
-																<option value="PIERO BARDALES">PIERO BARDALES</option>
-																<option value="PIERO NASTARES">PIERO NASTARES</option>
-																<option value="PIERO NASTARES">PIERO NASTARES</option>
-																<option value="PIERO NASTARES">PIERO NASTARES</option>
-																<option value="PIERO NASTARES">PIERO NASTARES</option>
-	
-																</select>
+															<select name="txtPersonalMedico" class="form-control country_code  form-control-sm" id="payment-method-country">
+																<option value="">Seleccionar medico</option>
+																<option value=1>Nombre 1</option>
+																<option value=2>Nombre 2</option>
+																<option value=3>Nombre 3</option>
+																<option value=4>Nombre 4</option>
+																<option value=5>Nombre 5</option>
+															</select>
 														</div>
 													</div>
-
-													<div class="col-md-9">
-
                                                         <div class="form-group row">
-                                                            <label for="date"class="col-sm-3 col-form-label col-form-label-sm">FECHA</label>
+                                                            <label for="date"class="col-sm-3 col-form-label col-form-label-sm">Fecha de atencion</label>
 															<div class="col-md-9">
                                                             	<input type="text" class="form-control form-control-sm" id="date" placeholder="Add date picker" name="txtFecha">
                                                         	</div>
                                                     	</div>
-													</div>
+													
 														<div class="form-group row">
-															<label for="company-phone" class="col-sm-3 col-form-label col-form-label-sm">HORA DE ATENCION</label>
+															<label for="company-phone" class="col-sm-3 col-form-label col-form-label-sm">Hora de atencion</label>
 															<div class="col-sm-9">
 																<input type="text" class="form-control form-control-sm" id="company-phone" placeholder="15:45" name="txtHora">
 															</div>
@@ -197,16 +189,16 @@
 												<div class="invoice-address-client-fields">
 
 													<div class="form-group row">
-														<label for="company-email" class="col-sm-3 col-form-label col-form-label-sm">ESTADO DE LA CITA</label>
+														<label for="company-email" class="col-sm-3 col-form-label col-form-label-sm">Estado de la cita</label>
 														<div class="col-sm-9">
 															<input type="text" class="form-control form-control-sm" id="company-name" placeholder="Estado" name="txtEstado">
 														</div>
 													</div>
 
 													<div class="form-group row">
-														<label for="company-email" class="col-sm-3 col-form-label col-form-label-sm">TIPO DE ATENCION</label>
+														<label for="company-email" class="col-sm-3 col-form-label col-form-label-sm">Tipo de atencion</label>
 														<div class="col-sm-9">
-															<input type="text" class="form-control form-control-sm" id="company-name" placeholder="Tipo de atención" name="txtTipoAtencion">
+															<input type="text" class="form-control form-control-sm" id="company-name" placeholder="Tipo de atencion" name="txtTipoAtencion">
 														</div>
 													</div>
 												
@@ -218,34 +210,12 @@
 										</div>
 										<div class="button">
 											<input type="submit" class="btn btn-primary" value="Registrar">
-											<a class="btn btn-primary" href="CursoServlet?tipo=list" role="button">Listar</a>
 										</div>
 										</form>
 									</div>	
 									
 								</div>
 								
-							</div>
-							
-						</div>
-
-							<div class="col-xl-3">
-								
-								<div class="invoice-actions">									
-								
-									<div class="invoice-actions-btn">
-
-										<div class="invoice-action-btn">
-
-											<div class="row">
-												
-												<div class="col-xl-12 col-md-4">
-													<a href="javascript:void(0);" class="btn btn-success btn-download">Save</a>
-												</div>
-											</div>
-										</div>
-										
-									</div>
 							</div>
 							
 						</div>
@@ -259,7 +229,7 @@
 	</div>
 	<div class="footer-wrapper">
 		<div class="footer-section f-section-1">
-			<p class="">Copyright © 2021 <a target="_blank" href="https://designreset.com">DesignReset</a>, All rights reserved.</p>
+			<p class="">Copyright ï¿½ 2021 <a target="_blank" href="https://designreset.com">DesignReset</a>, All rights reserved.</p>
 		</div>
 		<div class="footer-section f-section-2">
 			<p class="">Coded with <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></p>
