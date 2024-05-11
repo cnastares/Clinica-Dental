@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
-    <title>Clinica Odontologica - Lista de Citas</title>
+    <title>Clinica Odontologica</title>
     <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico"/>
         <!-- BEGIN GLOBAL MANDATORY STYLES -->
 		<link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
@@ -34,7 +34,7 @@
                 <li class="nav-item align-self-center page-heading">
                     <div class="page-header">
                         <div class="page-title">
-                            <h3>REGISTRAR UNA CITA</h3>
+                            <h3>REGISTRAR UN PACIENTE</h3>
                         </div>
                     </div>
                 </li>
@@ -79,7 +79,7 @@
                     </li>                                    
 
                     <li class="menu active">
-                        <a href="add_citas.html" aria-expanded="true" class="dropdown-toggle">
+                        <a href="regCitas.jsp" aria-expanded="true" class="dropdown-toggle">
                             <div class="">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-book"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
                                 <span>Registro de Citas</span>
@@ -136,47 +136,41 @@
 
 												<div class="invoice-address-company-fields">
 
-													<div class="form-group row">
-														<label for="company-name" class="col-sm-3 col-form-label col-form-label-sm">Nombre Paciente</label>
-														<div class="col-sm-9">
-															<select name="txtPaciente" class="form-control country_code  form-control-sm" id="payment-method-country">
-																<option value="">Seleccionar paciente</option>
-																<option value=11>Rodrigo Rojas</option>
-																<option value=12>Mario Casas</option>
-																<option value=13>Alejandra Saenz</option>
-																<option value=14>Mercedes Cabello</option>
-																<option value=15>Beatriz Yupanqui</option>
-															</select>
-														</div>
-													</div>
-
-													<div class="form-group row">
-														<label for="company-email" class="col-sm-3 col-form-label col-form-label-sm">Nombre Doctor</label>
-														<div class="col-sm-9">
-															<select name="txtPersonalMedico" class="form-control country_code  form-control-sm" id="payment-method-country">
-																<option value="">Seleccionar médico</option>
-																<option value=23>LUIS LOPEZ</option>
-																<option value=24>PIERO BARDALES</option>
-																<option value=25>ROSA TORRES</option>
-																<option value=26>JOSE FLORES</option>
-																<option value=27>ANA QUISPE</option>
-																<option value=28>MANUEL GOMEZ</option>
-															</select>
-														</div>
-													</div>
                                                         <div class="form-group row">
-                                                            <label for="date"class="col-sm-3 col-form-label col-form-label-sm">Fecha de atencion</label>
+                                                            <label for="document-number"class="col-sm-3 col-form-label col-form-label-sm">Documento de identidad</label>
 															<div class="col-md-9">
-                                                            	<input type="text" class="form-control form-control-sm" id="date" placeholder="Add date picker" name="txtFecha">
+                                                            	<input type="number" class="form-control form-control-sm" id="document-number" placeholder="Ingrese Doc." name="txtDocIdentidad">
+                                                        	</div>
+                                                    	</div>
+                                                    	
+                                                    	<div class="form-group row">
+                                                            <label for="full-names"class="col-sm-3 col-form-label col-form-label-sm">Nombres y apellidos</label>
+															<div class="col-md-9">
+                                                            	<input type="text" class="form-control form-control-sm" id="full-names" placeholder="Ingrese nombres" name="txtNombresCompletos">
+                                                        	</div>
+                                                    	</div>
+
+													
+                                                        <div class="form-group row">
+                                                            <label for="birth-date"class="col-sm-3 col-form-label col-form-label-sm">Fecha de Nacimiento</label>
+															<div class="col-md-9">
+                                                            	<input type="date" class="form-control form-control-sm" id="birth-date" placeholder="Elija fecha" name="txtFechaNacimiento">
                                                         	</div>
                                                     	</div>
 													
 														<div class="form-group row">
-															<label for="company-phone" class="col-sm-3 col-form-label col-form-label-sm">Hora de atencion</label>
+															<label for="pacient-phone" class="col-sm-3 col-form-label col-form-label-sm">Teléfono</label>
 															<div class="col-sm-9">
-																<input type="text" class="form-control form-control-sm" id="company-phone" placeholder="15:45" name="txtHora">
+																<input type="text" class="form-control form-control-sm" id="pacient-phone" placeholder="Ingrese telefono" name="txtTelefono">
 															</div>
-														</div>                                                                
+														</div>     
+														
+														<div class="form-group row">
+															<label for="pacient-mail" class="col-sm-3 col-form-label col-form-label-sm">Correo</label>
+															<div class="col-sm-9">
+																<input type="mail" class="form-control form-control-sm" id="pacient-mail" placeholder="Ingrese correo" name="txtCorreo">
+															</div>
+														</div>                                                               
 													
 													</div>
 												
@@ -184,26 +178,6 @@
 
 
 											<div class="col-xl-5 invoice-address-client">
-
-												<h4>ESTADO Y T/ ATENCION</h4>
-
-												<div class="invoice-address-client-fields">
-
-													<div class="form-group row">
-														<label for="company-email" class="col-sm-3 col-form-label col-form-label-sm">Estado de la cita</label>
-														<div class="col-sm-9">
-															<input type="text" class="form-control form-control-sm" id="company-name" placeholder="Estado" name="txtEstado">
-														</div>
-													</div>
-
-													<div class="form-group row">
-														<label for="company-email" class="col-sm-3 col-form-label col-form-label-sm">Tipo de atencion</label>
-														<div class="col-sm-9">
-															<input type="text" class="form-control form-control-sm" id="company-name" placeholder="Tipo de atencion" name="txtTipoAtencion">
-														</div>
-													</div>
-												
-												</div>
 												
 											</div>
 											
