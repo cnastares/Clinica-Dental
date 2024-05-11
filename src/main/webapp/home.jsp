@@ -46,11 +46,11 @@
             <ul class="navbar-item flex-row search-ul">
                 <li class="nav-item align-self-center search-animated">
                     <form class="form-inline search-full form-inline search" role="search" action="CitaServlet?tipo=filter" method = "POST">
-                        <button type = "submit"> 
+                        <button type = "submit" id="searchButton"> 
                         	<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search toggle-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                         </button>
                         <div class="search-bar">
-                            <input type="text" name="filterWord" class="form-control search-form-control  ml-lg-auto" placeholder="Buscar ...">
+                            <input type="text" name="filterWord" class="form-control search-form-control  ml-lg-auto" placeholder="Buscar Nombre de Paciente...">
                         </div>
                     </form>
                 </li>
@@ -94,7 +94,7 @@
                     </li>                                    
 
                     <li class="menu">
-                        <a href="charts_apex.html" aria-expanded="false" class="dropdown-toggle">
+                        <a href="regCitas.jsp" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-book"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
                                 <span>Registro de Citas</span>

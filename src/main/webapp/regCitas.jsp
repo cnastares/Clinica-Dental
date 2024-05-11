@@ -58,7 +58,7 @@
 
                 <ul class="navbar-nav theme-brand flex-row  text-center">
                     <li class="nav-item theme-text">
-                        <a href="home.html" class="nav-link">Clinica Odontologica</a>
+                        <a href="home.jsp" class="nav-link">Clinica Odontologica</a>
                     </li>
                     <li class="nav-item toggle-sidebar">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather sidebarCollapse feather-chevrons-left"><polyline points="11 17 6 12 11 7"></polyline><polyline points="18 17 13 12 18 7"></polyline></svg>
@@ -70,7 +70,7 @@
                     
 
                     <li class="menu">
-                        <a href="home.html" aria-expanded="false" class="dropdown-toggle">
+                        <a href="home.jsp" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>                                
                                 <span>Dashboard</span>
@@ -132,7 +132,7 @@
 										<div class="row justify-content-between">
 											<div class="col-xl-5 invoice-address-company">
 
-												<h4>Fromulario:-</h4>
+												<h4>Formulario:-</h4>
 
 												<div class="invoice-address-company-fields">
 
@@ -141,11 +141,11 @@
 														<div class="col-sm-9">
 															<select name="txtPaciente" class="form-control country_code  form-control-sm" id="payment-method-country">
 																<option value="">Seleccionar paciente</option>
-																<option value=1>Nombre 1</option>
-																<option value=2>Nombre 2</option>
-																<option value=3>Nombre 3</option>
-																<option value=4>Nombre 4</option>
-																<option value=5>Nombre 5</option>
+																<option value=11>Rodrigo Rojas</option>
+																<option value=12>Mario Casas</option>
+																<option value=13>Alejandra Saenz</option>
+																<option value=14>Mercedes Cabello</option>
+																<option value=15>Beatriz Yupanqui</option>
 															</select>
 														</div>
 													</div>
@@ -154,12 +154,13 @@
 														<label for="company-email" class="col-sm-3 col-form-label col-form-label-sm">Nombre Doctor</label>
 														<div class="col-sm-9">
 															<select name="txtPersonalMedico" class="form-control country_code  form-control-sm" id="payment-method-country">
-																<option value="">Seleccionar medico</option>
-																<option value=1>Nombre 1</option>
-																<option value=2>Nombre 2</option>
-																<option value=3>Nombre 3</option>
-																<option value=4>Nombre 4</option>
-																<option value=5>Nombre 5</option>
+																<option value="">Seleccionar médico</option>
+																<option value=23>LUIS LOPEZ</option>
+																<option value=24>PIERO BARDALES</option>
+																<option value=25>ROSA TORRES</option>
+																<option value=26>JOSE FLORES</option>
+																<option value=27>ANA QUISPE</option>
+																<option value=28>MANUEL GOMEZ</option>
 															</select>
 														</div>
 													</div>
