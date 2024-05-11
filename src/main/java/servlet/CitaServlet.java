@@ -1,6 +1,8 @@
 package servlet;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.sql.Time;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -53,5 +55,50 @@ public class CitaServlet extends HttpServlet {
 		request.setAttribute("lista", lista);
 		request.getRequestDispatcher("home.jsp").forward(request, response);
 	}
+	
+	protected void editarCita(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int id_cita = Integer.parseInt(request.getParameter("id"));
+		
+		DAOFactory daoFactory = DAOFactory.getDaoFactory(DAOFactory.MYSQL);
+		
+		CitaDAO dao = daoFactory.getCita();
+		
+		Cita cita = dao.obtenerCita(id_cita);
+		
+		request.setAttribute("citaData", cita);
+		request.getRequestDispatcher("editcita.jsp").forward(request, response);		
+	}
+
+	protected void actualizarCita(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	    int id_cita = Integer.parseInt(request.getParameter("id_cita"));
+	    String nombre_paciente = request.getParameter("txtNombre_paciente");
+	    String nombre_personal = request.getParameter("txtNombre_personal");
+	    String estado = request.getParameter("txtEstado");
+	    String tipo_atencion = request.getParameter("txtTipo_atencion");
+	    Date fecha = Date.valueOf(request.getParameter("txtFecha"));
+	    Time hora = Time.valueOf(request.getParameter("txtHora"));
+	    
+	    Cita cita = new Cita();
+	    cita.setId_cita(id_cita);
+	    cita.setNombre_paciente(nombre_paciente);
+	    cita.setNombre_personal(nombre_personal);
+	    cita.setEstado(estado);
+	    cita.setTipo_atencion(tipo_atencion);
+	    cita.setFecha(fecha);
+	    cita.setHora(hora);
+	    
+	    DAOFactory daoFactory = DAOFactory.getDaoFactory(DAOFactory.MYSQL);
+	    CitaDAO dao = daoFactory.getCita();
+	    
+	    int value = dao.editarCita(cita);
+	    
+	    if(value == 1) {
+	        listCita(request, response);
+	    } else {
+	        request.setAttribute("mensaje", "Ocurrio un problema");
+	        request.getRequestDispatcher("home.jsp").forward(request, response);
+	    }
+	}
+
 
 }

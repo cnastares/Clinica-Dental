@@ -12,7 +12,9 @@ public interface CitaDAO {
 	
 	//public Cita obtenerCita(int id);
 	
-	//public int editarCita(Cita cita);
+	public int editarCita(Cita cita);
+
+	public Cita obtenerCita(int id);
 	
 	//public int eliminarCita(int id);
 }
