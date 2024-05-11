@@ -45,10 +45,12 @@
             </ul>
             <ul class="navbar-item flex-row search-ul">
                 <li class="nav-item align-self-center search-animated">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search toggle-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                    <form class="form-inline search-full form-inline search" role="search">
+                    <form class="form-inline search-full form-inline search" role="search" action="CitaServlet?tipo=filter" method = "POST">
+                        <button type = "submit"> 
+                        	<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search toggle-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                        </button>
                         <div class="search-bar">
-                            <input type="text" class="form-control search-form-control  ml-lg-auto" placeholder="Search...">
+                            <input type="text" name="filterWord" class="form-control search-form-control  ml-lg-auto" placeholder="Buscar ...">
                         </div>
                     </form>
                 </li>
@@ -113,7 +115,7 @@
                         <a target="_blank" href="../../documentation/index.html" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>                                
-                                <span>Cerrar  Sesión</span>
+                                <span>Cerrar  Sesiï¿½n</span>
                             </div>
                         </a>
                     </li>
@@ -165,13 +167,14 @@
                                         <td><span class="inv-amount"><%=item.getHora() %></span></td>
                                         <td><span class="badge badge-success inv-status"><%=item.getEstado() %> </span></td>
                                         <td><span class="badge badge-success inv-status"><%=item.getTipo_atencion() %> </span></td>
-                                        <td>
-											<a href="#editCitaModal" class="edit" data-toggle="modal" data-id="<%=item.getId_cita()%>" onclick="window.location.href='CitaServlet?tipo=editar&id=<%=item.getId_cita()%>'">
-											    <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
-											</a>
-											<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-										</td>
-                                    </tr>
+                                        <td>	
+											<a href="CitaServlet?tipo=edit>" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                            <a href="CitaServlet?tipo=delete&id=<%=item.getId_cita()%>">
+                                                	<i class="material-icons">&#xE872;</i>
+                                            </a>
+                                        </td>
+
+									</tr>
 								<%
 								}
 							}
@@ -185,7 +188,7 @@
             </div>
             <div class="footer-wrapper">
                 <div class="footer-section f-section-1">
-                    <p class="">Copyright © 2021 <a target="_blank" href="https://designreset.com">DesignReset</a>, All rights reserved.</p>
+                    <p class="">Copyright ï¿½ 2021 <a target="_blank" href="https://designreset.com">DesignReset</a>, All rights reserved.</p>
                 </div>
                 <div class="footer-section f-section-2">
                     <p class="">Coded with <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></p>
@@ -258,7 +261,8 @@
 					</div>
 					<div class="modal-footer">
 						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-						<input type="submit" class="btn btn-danger" value="Delete">
+						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                        
 					</div>
 				</form>
 			</div>

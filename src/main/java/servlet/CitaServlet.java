@@ -41,8 +41,8 @@ public class CitaServlet extends HttpServlet {
 		case "list" : listCita(request, response); break;
 		case "editar":editarCita(request, response);
 		case "actualizar" : actualizarCita(request, response);
-		//case "delete" : eliminarCita(request, response); break;
-		//case "filter" : filtrarCita(request, response); break;
+		case "delete" : eliminarCita(request, response); break;
+		case "filter" : filtrarCita(request, response); break;
 		default:
 			request.setAttribute("mensaje", "Ocurrio un problema");
 			request.getRequestDispatcher("home.jsp").forward(request, response);
@@ -67,7 +67,6 @@ public class CitaServlet extends HttpServlet {
         //Cita cita = dao.obtenerCita(id_cita);
         CitaDAO citaDAO = daoFactory.getCita();
         Cita cita = citaDAO.obtenerCita(idcita);
-
         // Enviar los datos de la cita como un atributo en la solicitud
         request.setAttribute("citaData", cita);
 
@@ -110,5 +109,34 @@ public class CitaServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 	}
+	protected void eliminarCita(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int id = Integer.parseInt(request.getParameter("id"));
+		System.out.println("linea 61");
+		DAOFactory daoFactory = DAOFactory.getDaoFactory(DAOFactory.MYSQL);
+		CitaDAO dao = daoFactory.getCita();
+		
+		int value = dao.eliminarCita(id);
+		
+		if(value == 1) {
+			listCita(request, response);
+		} else {
+			request.setAttribute("mensaje", "Ocurrio un problema");
+			request.getRequestDispatcher("home.jsp").forward(request, response);
+		}
+			
+	}
+	
+	protected void filtrarCita(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String filter = request.getParameter("filterWord");
+		DAOFactory daoFactory = DAOFactory.getDaoFactory(DAOFactory.MYSQL);
+	
+		CitaDAO dao = daoFactory.getCita();
+		
+		List<Cita> lista = dao.filtrarCita(filter);
+		
+		request.setAttribute("lista", lista);
+		request.getRequestDispatcher("home.jsp").forward(request, response);
+	}
+
 }
 	

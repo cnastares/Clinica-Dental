@@ -16,6 +16,9 @@ public class MysqlConexion {
 			String user = "root";
 			//String pwd = "verovero";
 			String pwd = "";
+
+			//String pwd = "amtyandrea";
+
 			con = DriverManager.getConnection(url, user, pwd);
 		} catch (ClassNotFoundException e) {
 			System.out.println("Error driver no instalado" + e.getMessage());
