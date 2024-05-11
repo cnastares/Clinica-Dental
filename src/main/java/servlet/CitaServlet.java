@@ -33,72 +33,82 @@ public class CitaServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String tipo = request.getParameter("tipo");
-		
+		System.out.println(tipo);
 		switch(tipo) {
 		case "list" : listCita(request, response); break;
+		case "editar":editarCita(request, response);
+		case "actualizar" : actualizarCita(request, response);
+		//case "delete" : eliminarCita(request, response); break;
+		//case "filter" : filtrarCita(request, response); break;
 		default:
 			request.setAttribute("mensaje", "Ocurrio un problema");
 			request.getRequestDispatcher("home.jsp").forward(request, response);
+			
 		}
 	}
 	
-	protected void listCita(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void listCita(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DAOFactory daoFactory = DAOFactory.getDaoFactory(DAOFactory.MYSQL);
-		
 		CitaDAO dao = daoFactory.getCita();
-		
 		List<Cita> lista = dao.listarCitas();
-		
 		request.setAttribute("lista", lista);
 		request.getRequestDispatcher("home.jsp").forward(request, response);
 	}
 	
-	protected void editarCita(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int id_cita = Integer.parseInt(request.getParameter("id"));
+    protected void editarCita(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("Entrando al método editarCita");
+        int idcita = Integer.parseInt(request.getParameter("id"));
+        System.out.println("ID de la cita: " + idcita);
+        DAOFactory daoFactory = DAOFactory.getDaoFactory(DAOFactory.MYSQL);
+        //CitaDAO dao = daoFactory.getCita();
+        //Cita cita = dao.obtenerCita(id_cita);
+        CitaDAO citaDAO = daoFactory.getCita();
+        Cita cita = citaDAO.obtenerCita(idcita);
+
+        // Enviar los datos de la cita como un atributo en la solicitud
+        request.setAttribute("citaData", cita);
+
+        // Redirigir a la página home.jsp
+        request.getRequestDispatcher("edit_citas.jsp").forward(request, response);
+    }
+
+
+    private void actualizarCita(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id_Cita = Integer.parseInt(request.getParameter("id_cita"));
+        String nombrePaciente = request.getParameter("txtNombre_paciente");
+        String nombrePersonal = request.getParameter("txtNombre_personal");
+        String estado = request.getParameter("txtEstado");
+        String tipoAtencion = request.getParameter("txtTipo_atencion");
+        Date fecha = Date.valueOf(request.getParameter("txtFecha"));
+        Time hora = Time.valueOf(request.getParameter("txtHora") + ":00");
+
+        Cita cita = new Cita();
+        cita.setId_cita(id_Cita);
+        cita.setNombre_paciente(nombrePaciente);
+        cita.setNombre_personal(nombrePersonal);
+        cita.setEstado(estado);
+        cita.setTipo_atencion(tipoAtencion);
+        cita.setFecha(fecha);
+        cita.setHora(hora);
+
+        DAOFactory daoFactory = DAOFactory.getDaoFactory(DAOFactory.MYSQL);
+        CitaDAO citaDAO = daoFactory.getCita();
+        int resultado = citaDAO.editarCita(cita);
+
+        if (resultado == 1) {
+            listarCitas(request, response);
+        } else {
+            request.setAttribute("mensaje", "Ocurrió un problema");
+            request.getRequestDispatcher("home.jsp").forward(request, response);
+        }
+    }
+
+	private void listarCitas(HttpServletRequest request, HttpServletResponse response) {
+		// TODO Auto-generated method stub
 		
-		DAOFactory daoFactory = DAOFactory.getDaoFactory(DAOFactory.MYSQL);
-		
-		CitaDAO dao = daoFactory.getCita();
-		
-		Cita cita = dao.obtenerCita(id_cita);
-		
-		request.setAttribute("citaData", cita);
-		request.getRequestDispatcher("editcita.jsp").forward(request, response);		
 	}
-
-	protected void actualizarCita(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	    int id_cita = Integer.parseInt(request.getParameter("id_cita"));
-	    String nombre_paciente = request.getParameter("txtNombre_paciente");
-	    String nombre_personal = request.getParameter("txtNombre_personal");
-	    String estado = request.getParameter("txtEstado");
-	    String tipo_atencion = request.getParameter("txtTipo_atencion");
-	    Date fecha = Date.valueOf(request.getParameter("txtFecha"));
-	    Time hora = Time.valueOf(request.getParameter("txtHora"));
-	    
-	    Cita cita = new Cita();
-	    cita.setId_cita(id_cita);
-	    cita.setNombre_paciente(nombre_paciente);
-	    cita.setNombre_personal(nombre_personal);
-	    cita.setEstado(estado);
-	    cita.setTipo_atencion(tipo_atencion);
-	    cita.setFecha(fecha);
-	    cita.setHora(hora);
-	    
-	    DAOFactory daoFactory = DAOFactory.getDaoFactory(DAOFactory.MYSQL);
-	    CitaDAO dao = daoFactory.getCita();
-	    
-	    int value = dao.editarCita(cita);
-	    
-	    if(value == 1) {
-	        listCita(request, response);
-	    } else {
-	        request.setAttribute("mensaje", "Ocurrio un problema");
-	        request.getRequestDispatcher("home.jsp").forward(request, response);
-	    }
-	}
-
-
 }
+	

@@ -166,9 +166,11 @@
                                         <td><span class="badge badge-success inv-status"><%=item.getEstado() %> </span></td>
                                         <td><span class="badge badge-success inv-status"><%=item.getTipo_atencion() %> </span></td>
                                         <td>
-                                                <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                                <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                                        </td>
+											<a href="#editCitaModal" class="edit" data-toggle="modal" data-id="<%=item.getId_cita()%>" onclick="window.location.href='CitaServlet?tipo=editar&id=<%=item.getId_cita()%>'">
+											    <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
+											</a>
+											<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+										</td>
                                     </tr>
 								<%
 								}
@@ -195,40 +197,52 @@
     </div>
     <!-- END MAIN CONTAINER -->
     <!-- Edit Modal HTML -->
-	<div id="editEmployeeModal" class="modal fade">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<form>
-					<div class="modal-header">						
-						<h4 class="modal-title">Edit Employee</h4>
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					</div>
-					<div class="modal-body">					
-						<div class="form-group">
-							<label>Name</label>
-							<input type="text" class="form-control" required>
-						</div>
-						<div class="form-group">
-							<label>Email</label>
-							<input type="email" class="form-control" required>
-						</div>
-						<div class="form-group">
-							<label>Address</label>
-							<textarea class="form-control" required></textarea>
-						</div>
-						<div class="form-group">
-							<label>Phone</label>
-							<input type="text" class="form-control" required>
-						</div>					
-					</div>
-					<div class="modal-footer">
-						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-						<input type="submit" class="btn btn-info" value="Save">
-					</div>
-				</form>
-			</div>
-		</div>
+	<!-- Edit Modal HTML -->
+	<div id="editCitaModal" class="modal fade">
+	    <div class="modal-dialog">
+	        <div class="modal-content">
+	            <form id="editCitaForm" method="post" action="CitaServlet">
+	                <input type="hidden" name="tipo" value="actualizar">
+	                <input type="hidden" name="id_cita" id="editCitaId">
+	                <div class="modal-header">
+	                    <h4 class="modal-title">Editar Cita</h4>
+	                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	                </div>
+	                <div class="modal-body">
+	                    <div class="form-group">
+	                        <label>Nombre Paciente</label>
+	                        <input type="text" class="form-control" name="txtNombre_paciente" id="editNombrePaciente" required>
+	                    </div>
+	                    <div class="form-group">
+	                        <label>Nombre Personal</label>
+	                        <input type="text" class="form-control" name="txtNombre_personal" id="editNombrePersonal" required>
+	                    </div>
+	                    <div class="form-group">
+	                        <label>Estado</label>
+	                        <input type="text" class="form-control" name="txtEstado" id="editEstado" required>
+	                    </div>
+	                    <div class="form-group">
+	                        <label>Tipo de Atención</label>
+	                        <input type="text" class="form-control" name="txtTipo_atencion" id="editTipoAtencion" required>
+	                    </div>
+	                    <div class="form-group">
+	                        <label>Fecha</label>
+	                        <input type="date" class="form-control" name="txtFecha" id="editFecha" required>
+	                    </div>
+	                    <div class="form-group">
+	                        <label>Hora</label>
+	                        <input type="time" class="form -control" name="txtHora" id="editHora" required>
+	                    </div>
+	                </div>
+	                <div class="modal-footer">
+	                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+	                    <input type="submit" class="btn btn-info" value="Guardar">
+	                </div>
+	            </form>
+	        </div>
+	    </div>
 	</div>
+<!--  END CONTENT AREA  -->
 	<!-- Delete Modal HTML -->
 	<div id="deleteEmployeeModal" class="modal fade">
 		<div class="modal-dialog">
@@ -264,6 +278,7 @@
         });
     </script>
     <script src="assets/js/custom.js"></script>
+    <script src="assets/js/editar.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
     <!-- END GLOBAL MANDATORY SCRIPTS -->
