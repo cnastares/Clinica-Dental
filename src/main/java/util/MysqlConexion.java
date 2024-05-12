@@ -13,7 +13,7 @@ public class MysqlConexion {
 			Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
 			String url = "jdbc:mysql://localhost:3306/clinica?useSSL=false&useTimezone=true&serverTimezone=UTC";
 			String user = "root";
-			String pwd = "amtyandrea";
+			String pwd = "verovero";
 			con = DriverManager.getConnection(url, user, pwd);
 		} catch (ClassNotFoundException e) {
 			System.out.println("Error driver no instalado" + e.getMessage());

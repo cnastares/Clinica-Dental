@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import dao.DAOFactory;
 import entidades.Cita;
 import entidades.Paciente;
+import interfaces.CitaDAO;
 import interfaces.PacienteDAO;
 import servlet.CitaServlet;
 
@@ -28,7 +30,9 @@ public class PacienteServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		String tipo = request.getParameter("tipo");
 		System.out.println(tipo);
+		listData(request, response);
 		switch(tipo) {
+		case "list" : listData(request, response); break;
 		case "regist" : try {
 				registPaciente(request, response);
 			} catch (ServletException e) {
@@ -69,7 +73,6 @@ public class PacienteServlet extends HttpServlet {
 		PacienteDAO dao = daoFactory.getPaciente();
 		
 		int value = dao.registrarPaciente(paciente);
-		
 		if(value == 1){
 			request.setAttribute("registroExitoso", "Paciente registrado exitosamente");
 		} else {
@@ -78,5 +81,18 @@ public class PacienteServlet extends HttpServlet {
 		}
 		
 	}
+	
+	protected void listData(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		DAOFactory daoFactory = DAOFactory.getDaoFactory(DAOFactory.MYSQL);
+	;
+		PacienteDAO dao = daoFactory.getPaciente();
+		
+		List<Paciente> listaPacientes = dao.listarPacientes();
+
+		System.out.println(listaPacientes);
+		request.setAttribute("listaPacientes", listaPacientes);
+		request.getRequestDispatcher("home.jsp").forward(request, response);
+	}
+
 
 }

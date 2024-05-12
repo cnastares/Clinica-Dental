@@ -1,3 +1,5 @@
+<%@page import="entidades.Paciente"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -133,19 +135,29 @@
 											<div class="col-xl-5 invoice-address-company">
 
 												<h4>Formulario:</h4>
-
+												<%
+													List<Paciente> listPacientes = (List<Paciente>)request.getAttribute("listaPacientes");
+												%>
 												<div class="invoice-address-company-fields">
 
 													<div class="form-group row">
 														<label for="company-name" class="col-sm-3 col-form-label col-form-label-sm">Nombre Paciente</label>
 														<div class="col-sm-9">
 															<select name="txtPaciente" class="form-control country_code  form-control-sm" id="payment-method-country">
-																<option value="">Seleccionar paciente</option>
-																<option value=11>Rodrigo Rojas</option>
-																<option value=12>Mario Casas</option>
-																<option value=13>Alejandra Saenz</option>
-																<option value=14>Mercedes Cabello</option>
-																<option value=15>Beatriz Yupanqui</option>
+															<% 
+																if(listPacientes !=null) {
+																	for(Paciente item: listPacientes) {
+																		
+
+															%>
+																<option value="<%=item.getId_paciente()%>">
+																	<%="selected='selected'"%>
+																	<%=item.getNombre() %>
+																</option>
+															<% 
+																	}
+																}
+															%>
 															</select>
 														</div>
 													</div>

@@ -15,7 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.DAOFactory;
 import entidades.Cita;
+import entidades.Paciente;
 import interfaces.CitaDAO;
+import interfaces.PacienteDAO;
 
 /**
  * Servlet implementation class CitaServlet
@@ -68,6 +70,7 @@ public class CitaServlet extends HttpServlet {
 		CitaDAO dao = daoFactory.getCita();
 		
 		List<Cita> lista = dao.listarCitas();
+
 		
 		request.setAttribute("lista", lista);
 		request.getRequestDispatcher("home.jsp").forward(request, response);
@@ -104,8 +107,18 @@ public class CitaServlet extends HttpServlet {
 
 		
 	protected void registCita(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException {
+		
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
+		if (request.getParameter("txtHora") != null) {
+		    // Parameter is not null, proceed with parsing
+			java.util.Date parsedTimeUtil = timeFormat.parse(request.getParameter("txtHora"));
+		    // Continue processing the parsed date
+		} else {
+		    // Handle the case where the parameter is null
+		    // For example, show an error message or provide a default value
+			java.util.Date parsedTimeUtil = timeFormat.parse(request.getParameter("2024-05-12"));
+		}
 	    // Analizar la cadena de tiempo
 	    java.util.Date parsedTimeUtil = timeFormat.parse(request.getParameter("txtHora"));
 	    java.util.Date parsedDateUtil = dateFormat.parse(request.getParameter("txtFecha"));
@@ -143,14 +156,15 @@ public class CitaServlet extends HttpServlet {
 		
 	}
 	
-	protected void listPacientes(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void listData(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DAOFactory daoFactory = DAOFactory.getDaoFactory(DAOFactory.MYSQL);
 	;
-		CitaDAO dao = daoFactory.getCita();
+		PacienteDAO dao = daoFactory.getPaciente();
 		
-		List<Cita> lista = dao.listarCitas();
-		
-		request.setAttribute("lista", lista);
+		List<Paciente> listaPacientes = dao.listarPacientes();
+
+		System.out.println(listaPacientes);
+		request.setAttribute("listaPacientes", listaPacientes);
 		request.getRequestDispatcher("home.jsp").forward(request, response);
 	}
 
