@@ -9,6 +9,7 @@ public abstract class DAOFactory {
 	public static final int ORACLE = 3;
 	
 	public abstract CitaDAO getCita();
+	public abstract PacienteDAO getPaciente();
 	
 	public static DAOFactory getDaoFactory(int tipo) {
 		

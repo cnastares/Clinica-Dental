@@ -10,4 +10,9 @@ public class MySqlDAOFactory extends DAOFactory{
 	public CitaDAO getCita() {
 		return new MySqlCitaDAO();
 	}
+	
+	@Override
+	public PacienteDAO getPaciente() {
+		return new MySqlPacienteDAO();
+	}
 }

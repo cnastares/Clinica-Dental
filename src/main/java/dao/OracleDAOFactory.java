@@ -1,7 +1,9 @@
 package dao;
 
 import interfaces.CitaDAO;
+import interfaces.PacienteDAO;
 import modelo.MySqlCitaDAO;
+import modelo.MySqlPacienteDAO;
 
 
 public class OracleDAOFactory extends DAOFactory {
@@ -11,5 +13,9 @@ public class OracleDAOFactory extends DAOFactory {
 		return new MySqlCitaDAO();
 	}
 	
+	@Override
+	public PacienteDAO getPaciente() {
+		return new MySqlPacienteDAO();
+	}
 
 }
