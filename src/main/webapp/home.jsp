@@ -127,7 +127,7 @@
         </div>
         <!--  END SIDEBAR  -->
 
-        <!--  BEGIN CONTENT AREA  -->
+       <!--  BEGIN CONTENT AREA  -->
         <div id="content" class="main-content">
             <div class="layout-px-spacing">
                 <div class="row layout-top-spacing">
@@ -168,8 +168,10 @@
                                         <td><span class="badge badge-success inv-status"><%=item.getEstado() %> </span></td>
                                         <td><span class="badge badge-success inv-status"><%=item.getTipo_atencion() %> </span></td>
                                         <td>
-                                                <a href="CitaServlet?tipo=edit>" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                                <a href="CitaServlet?tipo=delete&id=<%=item.getId_cita()%>">
+                                                <a href="CitaServlet?tipo=edit&id=<%=item.getId_cita()%>" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                                     <a href="editCita.jsp?id=<%=item.getId_cita()%>&nombrePaciente=<%=item.getNombre_paciente()%>&nombrePersonal=<%=item.getNombre_personal()%>&fecha=<%=item.getFecha()%>&hora=<%=item.getHora()%>&estado=<%=item.getEstado()%>&tipoAtencion=<%=item.getTipo_atencion()%>">Editar</a>
+                                                                                     
+	                                                <a href="CitaServlet?tipo=delete&id=<%=item.getId_cita()%>">
                                                 	<i class="material-icons">&#xE872;</i>
                                                 </a>
                                         </td>
@@ -199,40 +201,8 @@
     </div>
     <!-- END MAIN CONTAINER -->
     <!-- Edit Modal HTML -->
-	<div id="editEmployeeModal" class="modal fade">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<form>
-					<div class="modal-header">						
-						<h4 class="modal-title">Edit Employee</h4>
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					</div>
-					<div class="modal-body">					
-						<div class="form-group">
-							<label>Name</label>
-							<input type="text" class="form-control" required>
-						</div>
-						<div class="form-group">
-							<label>Email</label>
-							<input type="email" class="form-control" required>
-						</div>
-						<div class="form-group">
-							<label>Address</label>
-							<textarea class="form-control" required></textarea>
-						</div>
-						<div class="form-group">
-							<label>Phone</label>
-							<input type="text" class="form-control" required>
-						</div>					
-					</div>
-					<div class="modal-footer">
-						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-						<input type="submit" class="btn btn-info" value="Save">
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
+	<!-- Modal para la edición de citas -->
+	
 	<!-- Delete Modal HTML -->
 	<div id="deleteEmployeeModal" class="modal fade">
 		<div class="modal-dialog">
@@ -257,6 +227,33 @@
 	</div>
     <!-- Delete Modal -->
     <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
+	    <!-- Script para abrir el modal con los datos -->
+<script>
+    $(document).ready(function() {
+        $('.edit').click(function() {
+            var id_cita = $(this).data('id');
+            var nombre_paciente = $(this).data('nombre-paciente');
+            var nombre_personal = $(this).data('nombre-personal');
+            var fecha = $(this).data('fecha');
+            var hora = $(this).data('hora');
+            var estado = $(this).data('estado');
+            var tipo_atencion = $(this).data('tipo-atencion');
+
+            $('#edit_id_cita').val(id_cita);
+            $('#edit_nombre_paciente').val(nombre_paciente);
+            $('#edit_nombre_personal').val(nombre_personal);
+            $('#edit_fecha').val(fecha);
+            $('#edit_hora').val(hora);
+            $('#edit_estado').val(estado);
+            $('#edit_tipo_atencion').val(tipo_atencion);
+
+            $('#editCitaModal').modal('show');
+        });
+    });
+</script>
+
+
+    
     <script src="assets/js/libs/jquery-3.1.1.min.js"></script>
     <script src="bootstrap/js/popper.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
@@ -269,7 +266,6 @@
         });
     </script>
     <script src="assets/js/custom.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
     <!-- END GLOBAL MANDATORY SCRIPTS -->
     <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
