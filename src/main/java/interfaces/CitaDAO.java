@@ -10,9 +10,9 @@ public interface CitaDAO {
 	
 	public List<Cita> listarCitas();
 	
-	//public Cita obtenerCita(int id);
+	public Cita obtenerCita(int id);
 	
-	//public int editarCita(Cita cita);
+    public int editarCita(Cita cita);
 	
 	public int eliminarCita(int id);
 	

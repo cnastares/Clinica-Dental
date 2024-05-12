@@ -173,6 +173,7 @@
                                                 	<i class="material-icons">&#xE872;</i>
                                                 </a>
                                         </td>
+                      
                                     </tr>
 								<%
 								}
@@ -249,7 +250,6 @@
 					<div class="modal-footer">
 						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
 						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                        
 					</div>
 				</form>
 			</div>

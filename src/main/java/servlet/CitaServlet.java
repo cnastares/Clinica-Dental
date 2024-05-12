@@ -153,5 +153,66 @@ public class CitaServlet extends HttpServlet {
 		request.setAttribute("lista", lista);
 		request.getRequestDispatcher("home.jsp").forward(request, response);
 	}
+	
+	protected void modificarCita(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int id_cita = Integer.parseInt(request.getParameter("id"));
+		
+		DAOFactory daoFactory = DAOFactory.getDaoFactory(DAOFactory.MYSQL);
+		
+		CitaDAO dao = daoFactory.getCita();
+		
+		Cita cita = dao.obtenerCita(id_cita);
+		
+		request.setAttribute("citaData", cita);
+		request.getRequestDispatcher("editCita.jsp").forward(request, response);		
+	}
+
+	protected void actualizarCita(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	    int id = Integer.parseInt(request.getParameter("id_cita"));
+	    String nombrePaciente = request.getParameter("txtNombrePaciente");
+	    String nombrePersonal = request.getParameter("txtNombrePersonal");
+	    String fechaStr = request.getParameter("txtFecha");
+	    String horaStr = request.getParameter("txtHora");
+	    String estado = request.getParameter("txtEstado");
+	    String tipoAtencion = request.getParameter("txtTipoAtencion");
+
+	    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	    Date fecha = null;
+	    try {
+	        fecha = new Date(dateFormat.parse(fechaStr).getTime());
+	    } catch (ParseException e) {
+	        e.printStackTrace();
+	    }
+
+	    SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+	    Time hora = null;
+	    try {
+	        hora = new Time(timeFormat.parse(horaStr).getTime());
+	    } catch (ParseException e) {
+	        e.printStackTrace();
+	    }
+
+	    Cita cita = new Cita();
+	    cita.setId_cita(id);
+	    cita.setNombre_paciente(nombrePaciente);
+	    cita.setNombre_personal(nombrePersonal);
+	    cita.setFecha(fecha);
+	    cita.setHora(hora);
+	    cita.setEstado(estado);
+	    cita.setTipo_atencion(tipoAtencion);
+
+	    DAOFactory daoFactory = DAOFactory.getDaoFactory(DAOFactory.MYSQL);
+	    CitaDAO dao = daoFactory.getCita();
+
+		int value = dao.editarCita(cita);
+
+	    if (value == 1) {
+	        listCita(request, response);
+	    } else {
+	        request.setAttribute("mensaje", "Ocurrió un problema");
+	        request.getRequestDispatcher("home.jsp").forward(request, response);
+	    }
+	}
+	
 
 }
