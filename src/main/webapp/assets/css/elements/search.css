@@ -157,6 +157,9 @@
 .search-form-overlay.input-focused .form-inline.search .search-bar {
   width: 100%; }
 
+#searchButton{
+	border: none;
+}
 .search-form-overlay form.form-inline input.search-form-control {
   width: 100%;
   font-size: 13px;

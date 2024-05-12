@@ -1267,7 +1267,9 @@ code {
     border: none;
     width: 100%;
     display: none; } }
-
+#searchButton{
+	border: none;
+}
 @media (max-width: 575px) {
   .navbar .navbar-item .nav-item.dropdown.message-dropdown, .navbar .navbar-item .nav-item.dropdown.notification-dropdown {
     margin-left: 15px; }

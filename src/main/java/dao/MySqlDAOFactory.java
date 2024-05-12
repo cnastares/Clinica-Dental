@@ -7,13 +7,12 @@ import modelo.*;
 public class MySqlDAOFactory extends DAOFactory{
 
 	@Override
-	public CursoDAO getCurso() {
-		return new MySqlCursoDAO();
+	public CitaDAO getCita() {
+		return new MySqlCitaDAO();
 	}
 	
 	@Override
-	public UsuarioDAO getUsuario() {
-		return new MySqlUsuarioDAO();
+	public PacienteDAO getPaciente() {
+		return new MySqlPacienteDAO();
 	}
-	
 }

@@ -1,10 +1,12 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
-    <title>Clinica Odontologica - Lista de Citas</title>
+    <title>Clinica Odontologica</title>
     <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico"/>
         <!-- BEGIN GLOBAL MANDATORY STYLES -->
 		<link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
@@ -32,7 +34,7 @@
                 <li class="nav-item align-self-center page-heading">
                     <div class="page-header">
                         <div class="page-title">
-                            <h3>REGISTRAR UNA CITA</h3>
+                            <h3>REGISTRAR UN PACIENTE</h3>
                         </div>
                     </div>
                 </li>
@@ -56,7 +58,7 @@
 
                 <ul class="navbar-nav theme-brand flex-row  text-center">
                     <li class="nav-item theme-text">
-                        <a href="home.html" class="nav-link">Clinica Odontologica</a>
+                        <a href="home.jsp" class="nav-link">Clinica Odontologica</a>
                     </li>
                     <li class="nav-item toggle-sidebar">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather sidebarCollapse feather-chevrons-left"><polyline points="11 17 6 12 11 7"></polyline><polyline points="18 17 13 12 18 7"></polyline></svg>
@@ -68,7 +70,7 @@
                     
 
                     <li class="menu">
-                        <a href="home.html" aria-expanded="false" class="dropdown-toggle">
+                        <a href="home.jsp" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>                                
                                 <span>Dashboard</span>
@@ -77,7 +79,7 @@
                     </li>                                    
 
                     <li class="menu active">
-                        <a href="add_citas.html" aria-expanded="true" class="dropdown-toggle">
+                        <a href="regPacientes.jsp" aria-expanded="true" class="dropdown-toggle">
                             <div class="">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-book"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
                                 <span>Registro de Citas</span>
@@ -86,7 +88,7 @@
                     </li>
 
                     <li class="menu">
-                        <a target="_blank" href="../../documentation/index.html" aria-expanded="false" class="dropdown-toggle">
+                        <a href="regPacientes.jsp" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user-plus"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>                                
                                 <span>Registro de Pacientes</span>
@@ -98,7 +100,7 @@
                         <a target="_blank" href="../../documentation/index.html" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>                                
-                                <span>Cerrar  Sesión</span>
+                                <span>Cerrar  Sesion</span>
                             </div>
                         </a>
                     </li>
@@ -120,68 +122,55 @@
 				<div class="doc-container">
 
 					<div class="row">
-						<div class="col-xl-9">
+						<div class="col-xl-12">
 
 							<div class="invoice-content">
 
 								<div class="invoice-detail-body">
-
-									<div class="invoice-detail-title" bis_skin_checked="1">
-										
-										<div class="form-group mb-4">
-											<label for="number">NUMERO DE LA CITA</label>
-											<input type="text" class="form-control form-control-sm" id="number" placeholder="#0001">
-										</div>
-
-									</div>
-
 									<div class="invoice-detail-header">
-
+									<form action="PacienteServlet?tipo=regist" method="post">
 										<div class="row justify-content-between">
 											<div class="col-xl-5 invoice-address-company">
 
-												<h4>Fromulario:-</h4>
+												<h4>Formulario:</h4>
 
 												<div class="invoice-address-company-fields">
 
-													<div class="form-group row">
-														<label for="company-name" class="col-sm-3 col-form-label col-form-label-sm">Nombre Paciente</label>
-														<div class="col-sm-9">
-															<input type="text" class="form-control form-control-sm" id="company-name" placeholder="Nombre Paciente">
-														</div>
-													</div>
-
-													<div class="form-group row">
-														<label for="company-email" class="col-sm-3 col-form-label col-form-label-sm">Nombre Doctor</label>
-														<div class="col-sm-9">
-															<select name="country_code" class="form-control country_code  form-control-sm" id="payment-method-country">
-																<option value="">SELECCIONAR AL MEDICO</option>
-																<option value="PIERO NASTARES">PIERO NASTARES</option>
-																<option value="PIERO BARDALES">PIERO BARDALES</option>
-																<option value="PIERO NASTARES">PIERO NASTARES</option>
-																<option value="PIERO NASTARES">PIERO NASTARES</option>
-																<option value="PIERO NASTARES">PIERO NASTARES</option>
-																<option value="PIERO NASTARES">PIERO NASTARES</option>
-	
-																</select>
-														</div>
-													</div>
-
-													<div class="col-md-9">
-
                                                         <div class="form-group row">
-                                                            <label for="date"class="col-sm-3 col-form-label col-form-label-sm">FECHA</label>
+                                                            <label for="document-number"class="col-sm-3 col-form-label col-form-label-sm">Documento de identidad</label>
 															<div class="col-md-9">
-                                                            	<input type="text" class="form-control form-control-sm" id="date" placeholder="Add date picker">
+                                                            	<input type="number" class="form-control form-control-sm" id="document-number" placeholder="Ingrese Doc." name="txtDocIdentidad" required>
                                                         	</div>
                                                     	</div>
-													</div>
+                                                    	
+                                                    	<div class="form-group row">
+                                                            <label for="full-names"class="col-sm-3 col-form-label col-form-label-sm">Nombres y apellidos</label>
+															<div class="col-md-9">
+                                                            	<input type="text" class="form-control form-control-sm" id="full-names" placeholder="Ingrese nombres" name="txtNombresCompletos" required>
+                                                        	</div>
+                                                    	</div>
+
+													
+                                                        <div class="form-group row">
+                                                            <label for="birth-date"class="col-sm-3 col-form-label col-form-label-sm">Fecha de Nacimiento</label>
+															<div class="col-md-9">
+                                                            	<input type="date" class="form-control form-control-sm" id="birth-date" placeholder="Elija fecha" name="txtFechaNacimiento" required>
+                                                        	</div>
+                                                    	</div>
+													
 														<div class="form-group row">
-															<label for="company-phone" class="col-sm-3 col-form-label col-form-label-sm">HORA DE ATENCION</label>
+															<label for="pacient-phone" class="col-sm-3 col-form-label col-form-label-sm">Tel�fono</label>
 															<div class="col-sm-9">
-																<input type="text" class="form-control form-control-sm" id="company-phone" placeholder="15:45">
+																<input type="text" class="form-control form-control-sm" id="pacient-phone" placeholder="Ingrese telefono" name="txtTelefono" required>
 															</div>
-														</div>                                                                
+														</div>     
+														
+														<div class="form-group row">
+															<label for="pacient-mail" class="col-sm-3 col-form-label col-form-label-sm">Correo</label>
+															<div class="col-sm-9">
+																<input type="mail" class="form-control form-control-sm" id="pacient-mail" placeholder="Ingrese correo" name="txtCorreo" required>
+															</div>
+														</div>                                                               
 													
 													</div>
 												
@@ -189,63 +178,20 @@
 
 
 											<div class="col-xl-5 invoice-address-client">
-
-												<h4>ESTADO Y T/ ATENCION</h4>
-
-												<div class="invoice-address-client-fields">
-
-													<div class="form-group row">
-														<label for="company-email" class="col-sm-3 col-form-label col-form-label-sm">ESTADO DE LA CITA</label>
-														<div class="col-sm-9">
-															<select name="country_code" class="form-control country_code  form-control-sm" id="payment-method-country">
-																<option value="">ACTIVO</option>
-																<option value="PIERO NASTARES">CANCELADO</option>
-															</select>
-														</div>
-													</div>
-
-													<div class="form-group row">
-														<label for="company-email" class="col-sm-3 col-form-label col-form-label-sm">TIPO DE ATENCION</label>
-														<div class="col-sm-9">
-															<select name="country_code" class="form-control country_code  form-control-sm" id="payment-method-country">
-																<option value="">PARTICULAR</option>
-																<option value="PIERO NASTARES">EPS</option>
-															</select>
-														</div>
-													</div>
-												
-												</div>
 												
 											</div>
 											
 											
 										</div>
+										<div class="button">
+											<input type="submit" class="btn btn-primary" value="Registrar">
+										</div>
+										</form>
 										
 									</div>	
 									
 								</div>
 								
-							</div>
-							
-						</div>
-
-							<div class="col-xl-3">
-								
-								<div class="invoice-actions">									
-								
-									<div class="invoice-actions-btn">
-
-										<div class="invoice-action-btn">
-
-											<div class="row">
-												
-												<div class="col-xl-12 col-md-4">
-													<a href="javascript:void(0);" class="btn btn-success btn-download">Save</a>
-												</div>
-											</div>
-										</div>
-										
-									</div>
 							</div>
 							
 						</div>
@@ -259,7 +205,7 @@
 	</div>
 	<div class="footer-wrapper">
 		<div class="footer-section f-section-1">
-			<p class="">Copyright © 2021 <a target="_blank" href="https://designreset.com">DesignReset</a>, All rights reserved.</p>
+			<p class="">Copyright 2024 <a target="_blank" href="https://designreset.com">Clinica Odontologica</a>, All rights reserved.</p>
 		</div>
 		<div class="footer-section f-section-2">
 			<p class="">Coded with <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></p>

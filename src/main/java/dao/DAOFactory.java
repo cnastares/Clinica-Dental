@@ -8,8 +8,8 @@ public abstract class DAOFactory {
 	public static final int SQLSERVER = 2;
 	public static final int ORACLE = 3;
 	
-	public abstract CursoDAO getCurso();
-	public abstract UsuarioDAO getUsuario();
+	public abstract CitaDAO getCita();
+	public abstract PacienteDAO getPaciente();
 	
 	public static DAOFactory getDaoFactory(int tipo) {
 		

@@ -17,10 +17,10 @@ var invoiceList = $('#invoice-list').DataTable({
     }],
     buttons: [
         {
-            text: 'Add New',
+            text: 'Agregar Cita',
             className: 'btn btn-primary btn-sm',
             action: function(e, dt, node, config ) {
-                window.location = 'apps_invoice-add.html';
+                window.location = 'regCitas.jsp';
             }
         }
     ],
